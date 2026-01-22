@@ -11,6 +11,7 @@
  */
 export function getFirst(array) {
   // TODO
+  return array[0];
 }
 
 /**
@@ -26,6 +27,7 @@ export function getFirst(array) {
  */
 export function getLast(array) {
   // TODO
+  return array[array.length-1];
 }
 
 /**
@@ -42,7 +44,16 @@ export function getLast(array) {
  * getFirstLast([42]); // [42]
  */
 export function getFirstLast(array) {
-  // TODO
+  // looked up answer after answering it myself
+
+  if (array.length === 0) return []; // this makes sense to me
+  if (array.length === 1) return array; // this makes sense to me
+
+  const firstElm = array.shift();
+  const lastElm = array.pop();
+  return [firstElm, lastElm];
+
+  // REAL ANSWER return [getFirst(array), getLast(array)]
 }
 
 /**
@@ -60,6 +71,13 @@ export function getFirstLast(array) {
  */
 export function sharesFirstLetter(str1, str2) {
   // TODO
+  if (str1 === `` || str2 === ``) return false;
+  if (str1[0] === str2[0]) {
+    // console.log(`${str1} and ${str2} matches`);
+    return true;
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -75,6 +93,12 @@ export function sharesFirstLetter(str1, str2) {
  */
 export function quintuple(numbers) {
   // TODO
+  let result = []
+  for (const number of numbers) {
+    // console.log(number*5);
+    result.push(number*5);
+  }
+  return result
 }
 
 /**
@@ -96,6 +120,27 @@ export function quintuple(numbers) {
  */
 export function pluralize(words) {
   // TODO
+  // console.log(words);
+  let result = []
+  if (words.length === 0) return [];
+  
+  words.map((word) => {
+    if (word.endsWith(`s`)) {
+      result.push(word + `es`)
+    } else {
+      result.push(word + `s`)
+    }
+  })
+  console.log(result);
+  return result;
+
+  // REAL ANSWER
+  // for(const word of words) {
+  //   if (word.endsWith(`s`)) {
+  //     result.push(word + `es`);
+  //   } else { result.push(word + `s`); }
+  // }
+  // return result
 }
 
 /**
@@ -112,7 +157,14 @@ export function pluralize(words) {
  * countAttendance([]); // 0
  */
 export function countAttendance(attendance) {
-  // TODO
+  // CAN YOU EXPLAIN HOW THIS WORKS??
+  let present = 0;
+  for(const student of attendance) {
+    if(student) {
+      present++;
+    }
+  }
+  return present
 }
 
 /**
@@ -129,6 +181,17 @@ export function countAttendance(attendance) {
  */
 export function getLongestWord(sentence) {
   // TODO
+  if (sentence.length === 0) return null; 
+
+  let longestStr = ``; // store string in variable
+
+  for (const word of sentence) { // iterate through each
+    if (word.length > longestStr.length) { // keep only longest 
+      longestStr = word;
+    }
+  }
+  return longestStr // return that word
+
 }
 
 /**
@@ -146,6 +209,9 @@ export function getLongestWord(sentence) {
  */
 export function findSong(playlist, song) {
   // TODO
+
+  // match song to location in playlist 
+  return playlist.indexOf(song);
 }
 
 /**
@@ -163,4 +229,13 @@ export function findSong(playlist, song) {
  */
 export function findSpy(map) {
   // TODO
+  for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map.length; j++) {
+      if (map[i][j] === `spy`) {
+        console.log(i, j)
+        return [i, j]
+      }
+    }
+  }
+  return null
 }
